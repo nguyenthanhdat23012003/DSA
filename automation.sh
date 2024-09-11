@@ -35,8 +35,9 @@ pushMethods() {
             method_name=$(basename "$method_file" .md | sed 's/_/ /g')
             if ! grep -Fxq "$method_name" "$METHODS_FILE"; then
                 git add "$method_file"
-                git commit -m "Theory: $method_name"
                 echo "$method_name" >> "$METHODS_FILE"  # Log the new method
+                git add "$METHODS_FILE"
+                git commit -m "Theory: $method_name"
                 echo "Pushed method changes to Git: $method_name"
             fi
         fi
@@ -85,8 +86,9 @@ pushProblems() {
                 problem_name=$(basename "$problem_folder" | sed 's/_/ /g')
                 if ! grep -Fxq "$problem_name" "$PROBLEMS_FILE"; then
                     git add "$problem_folder"
-                    git commit -m "Problem: $problem_name"
                     echo "$problem_name" >> "$PROBLEMS_FILE"  # Log the new problem
+                    git add "$PROBLEMS_FILE"
+                    git commit -m "Problem: $problem_name"
                     echo "Pushed problem changes to Git: $problem_name"
                 fi
             fi
