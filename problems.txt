@@ -3,3 +3,4 @@ Remove Duplicates from Sorted Array
 Remove Element
 Remove Duplicates from Sorted Array 2
 Majority Element
+Rotate Array
