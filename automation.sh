@@ -1,13 +1,15 @@
 #!/bin/bash
 
-# Directory for methods and definitions
+# Directory for methods, definitions, and data structures
 METHOD_DIR="background_theory/method"
 DEFINITION_FILE="background_theory/definition.md"
+DATA_STRUCTURE_DIR="background_theory/data_structure"
 PROBLEM_DIR="problem"
 
-# Files to track existing methods and problems
+# Files to track existing methods, problems, and data structures
 METHODS_FILE="methods.txt"
 PROBLEMS_FILE="problems.txt"
+STRUCTURES_FILE="structures.txt"
 
 # Function to add a new method
 addMethod() {
@@ -97,6 +99,42 @@ pushProblems() {
     git push origin master
 }
 
+# Function to add a new data structure
+addStructure() {
+    structure_name="$1"
+
+    # Check if data structure already exists
+    if grep -Fxq "$structure_name" "$STRUCTURES_FILE"; then
+        echo "Data structure '$structure_name' already exists."
+        return
+    fi
+
+    # Replace spaces with underscores and create file name
+    structure_file_name=$(echo "$structure_name" | sed 's/ /_/g').md
+    structure_path="$DATA_STRUCTURE_DIR/$structure_file_name"
+
+    # Create the .md file for the data structure
+    touch "$structure_path"
+    echo "Created data structure $structure_name with path: $structure_path"
+}
+
+# Function to push all data structures to Git
+pushStructures() {
+    for structure_file in "$DATA_STRUCTURE_DIR"/*.md; do
+        if [ -f "$structure_file" ]; then
+            structure_name=$(basename "$structure_file" .md | sed 's/_/ /g')
+            if ! grep -Fxq "$structure_name" "$STRUCTURES_FILE"; then
+                git add "$structure_file"
+                echo "$structure_name" >> "$STRUCTURES_FILE"  # Log the new data structure
+                git add "$STRUCTURES_FILE"
+                git commit -m "Data Structure: $structure_name"
+                echo "Pushed data structure changes to Git: $structure_name"
+            fi
+        fi
+    done
+    git push origin master
+}
+
 # Check parameters and call corresponding function
 case "$1" in
     addMethod)
@@ -122,7 +160,17 @@ case "$1" in
     pushProblems)
         pushProblems
         ;;
+    addStructure)
+        if [ -z "$2" ]; then
+            echo "Usage: ./automation.sh addStructure \"Structure Name\""
+        else
+            addStructure "$2"
+        fi
+        ;;
+    pushStructures)
+        pushStructures
+        ;;
     *)
-        echo "Usage: ./automation.sh {addMethod|pushMethods|pushDefinition|addProblem|pushProblems}"
+        echo "Usage: ./automation.sh {addMethod|pushMethods|pushDefinition|addProblem|pushProblems|addStructure|pushStructures}"
         ;;
 esac
