@@ -9,3 +9,4 @@ Best Time to Buy and Sell Stock 2
 Jump Game
 Jump Game 2
 HIndex
+Insert Delete GetRandom Minimum Complexity
