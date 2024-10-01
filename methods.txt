@@ -4,3 +4,4 @@ Dynamic Programming
 Greedy
 Sorting Algorithms
 Prefix Sum
+Devide and Conquer
