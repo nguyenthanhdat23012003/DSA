@@ -3,3 +3,4 @@ LinkedList
 Queue
 Stack
 List
+HashTable
