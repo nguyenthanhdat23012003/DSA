@@ -1,2 +1,3 @@
 Two Array Pointer
 Boyer-Moore Majority Voting Algorithm
+Dynamic Programming
