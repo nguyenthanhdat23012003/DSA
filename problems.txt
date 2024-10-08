@@ -7,3 +7,4 @@ Rotate Array
 Best Time to Buy and Sell Stock
 Best Time to Buy and Sell Stock 2
 Jump Game
+Jump Game 2
