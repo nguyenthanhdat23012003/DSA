@@ -1,4 +1,4 @@
-package problem.easy.Remove_Duplicates_from_Sorted_Array_2;
+package problem.medium.Remove_Duplicates_from_Sorted_Array_2;
 
 class Solution {
     // // Solution 1
