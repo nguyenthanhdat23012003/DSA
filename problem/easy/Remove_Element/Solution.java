@@ -1,6 +1,7 @@
 package problem.easy.Remove_Element;
 
 class Solution {
+    // Solution: Two Array Pointer
     public int removeElement(int[] nums, int val) {
         int k = 0; 
         
