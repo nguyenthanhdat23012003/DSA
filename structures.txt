@@ -4,3 +4,4 @@ Queue
 Stack
 List
 HashTable
+Tree
