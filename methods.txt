@@ -3,3 +3,4 @@ Boyer-Moore Majority Voting Algorithm
 Dynamic Programming
 Greedy
 Sorting Algorithms
+Prefix Sum
