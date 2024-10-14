@@ -153,6 +153,35 @@ class Trie {
 
         return false; // Không cần xóa
     }
+
+    // Xóa phần tử không dùng đệ quy
+    public boolean delete(String word) {
+        if(!search(word)) return false;
+        TrieNode current = root;
+        Stack<TrieNode> nodes = new Stack<>();
+        Stack<Character> chars = new Stack<>();
+        for(char c : word.toCharArray()) {
+            nodes.push(current);
+            chars.push(c);
+            current = current.children.get(c);
+        }
+
+        current.isEndOfWord = false;
+
+        while (!nodes.isEmpty()) {
+            current = nodes.pop();
+            char ch = chars.pop();
+
+            if(current.children.get(ch).children.isEmpty() 
+            && !current.children.get(ch).isEndOfWord) {
+                current.children.remove(ch);
+            } else {
+                break;
+            }
+        }
+
+        return true;
+    }
 }
 
 // Ví dụ sử dụng
