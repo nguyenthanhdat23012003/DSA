@@ -182,6 +182,32 @@ class Trie {
 
         return true;
     }
+
+    // In ra trie tree
+    public String printTrie() {
+        ArrayList<String> stringList = new ArrayList<>();
+        Stack<TrieNode> stackNode = new Stack<>();
+        Stack<String> stackWord = new Stack<>();
+    
+        stackNode.push(root);
+        stackWord.push("");
+    
+        while (!stackNode.isEmpty()) {
+            TrieNode currentNode = stackNode.pop();
+            String currentWord = stackWord.pop();
+    
+            if (currentNode.isEndOfWord) {
+                stringList.add(currentWord);
+            }
+    
+            for (char c : currentNode.children.keySet()) {
+                stackNode.push(currentNode.children.get(c));
+                stackWord.push(currentWord + c);
+            }
+        }
+    
+        return stringList.toString();
+    }
 }
 
 // Ví dụ sử dụng
