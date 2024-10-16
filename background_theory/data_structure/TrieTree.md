@@ -63,6 +63,8 @@ Giả sử bạn muốn lưu trữ các từ sau trong Trie: `["apple", "app", "
 
 Dưới đây là một triển khai đầy đủ của cây Trie trong Java, bao gồm các phương thức để chèn, tìm kiếm và xóa từ. Mỗi từ được lưu trữ theo cách cho phép tìm kiếm nhanh và hiệu quả theo từng ký tự.
 
+**Dưới đây chỉ là code sample, có thể khó hiểu và khó tiếp cận. Chi tiết hơn xem tại data_structure_implement/TrieTree**
+
 ```java
 import java.util.HashMap;
 
@@ -259,6 +261,8 @@ public class Main {
 - Xóa một từ khỏi Trie.
 - Kiểm tra nếu không còn nút con nào sau khi xóa từ thì xóa nút cha.
 
+#### Phương thức Print
+- In ra TrieTree
 
 ## Kết luận
 Trie là một cấu trúc dữ liệu mạnh mẽ để quản lý và tìm kiếm chuỗi. Với các thao tác tìm kiếm, chèn và xóa nhanh chóng, Trie rất hữu ích trong nhiều ứng dụng liên quan đến xử lý chuỗi.
