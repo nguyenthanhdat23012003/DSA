@@ -5,3 +5,4 @@ Stack
 List
 HashTable
 Tree
+TrieTree
