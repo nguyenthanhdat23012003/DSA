@@ -18,6 +18,8 @@ In the root directory, you’ll also find several auxiliary files:
 
 - **`automation.sh`**: A script designed to streamline the process of adding new problems or theory topics to the repository. This script automates routine additions, so feel free to ignore it unless contributing to repository maintenance.
 
+- **`automation_completion.sh`**: Support autocomplete for automation.sh command, still ignore it unless contributing to repository maintenance.
+
 - **`methods.txt`**: A list of algorithms included in the `background_theory` section, providing an easy reference to the covered methods.
 
 - **`problems.txt`**: A list of all practice problems available in the repository, with references to specific exercises for convenient tracking and review.
