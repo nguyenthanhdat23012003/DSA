@@ -4,3 +4,6 @@
 
 #### Majority element
 - Là phần tử xuất hiện nhiều hơn n/2 lần trong mảng, với n là độ dài của mảng
+
+#### Palindrome
+- Là một chuỗi ký tự mà khi đọc từ trái sang phải hay từ phải sang trái đều cho ra cùng một dãy ký tự. 
