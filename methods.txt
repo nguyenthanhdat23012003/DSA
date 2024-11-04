@@ -7,3 +7,4 @@ Prefix Sum
 Devide and Conquer
 Brute Force
 Sliding Window
+Searching Algorithms
