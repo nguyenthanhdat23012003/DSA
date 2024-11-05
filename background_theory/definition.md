@@ -29,3 +29,24 @@
 
     - **Monotonic Giảm**: Nếu hàm predicate là đơn điệu giảm, điều này có nghĩa là khi đầu vào tăng, giá trị trả về chỉ có thể giữ nguyên hoặc trở thành false. Ví dụ, một hàm predicate kiểm tra xem một số có nhỏ hơn một giá trị cố định không sẽ là hàm đơn điệu giảm.
 
+#### Unimodal Functions
+
+- **Định nghĩa**: Một hàm được gọi là unimodal nếu nó có một cực trị duy nhất (có thể là cực đại hoặc cực tiểu) trong miền xác định của nó. Điều này có nghĩa là giá trị của hàm tăng lên cho đến một điểm (cực trị) và sau đó giảm xuống (hoặc ngược lại).
+
+- **Đặc điểm**:
+
+    - Hàm có thể có dạng tăng rồi giảm hoặc giảm rồi tăng.
+    - Cực trị có thể là điểm tối đa hoặc tối thiểu, nhưng chỉ có một điểm như vậy.
+
+- **Hình ảnh minh họa**: Một đồ thị của một hàm unimodal sẽ có dạng giống như hình chữ U hoặc hình nón, với một điểm cao nhất hoặc thấp nhất.
+
+#### Bimodal Functions
+
+- **Định nghĩa**: Một hàm được gọi là bimodal nếu nó có hai cực trị (cùng là cực đại hoặc cực tiểu) trong miền xác định của nó. Điều này có nghĩa là hàm có hai điểm mà tại đó giá trị của nó cùng là lớn nhất hoặc nhỏ nhất.
+
+- **Đặc điểm**:
+
+    - Hàm có ba điểm cực trị, có thể là hai điểm tối đa và một điểm tối thiểu hoặc hai điểm tối thiểu và một điểm tối đa .
+    - Các giá trị của hàm tăng lên đến điểm cực trị đầu tiên, giảm xuống, và sau đó lại tăng lên đến điểm cực trị thứ hai. (hoặc ngược lại)
+
+- **Hình ảnh minh họa**: Một đồ thị của một hàm bimodal sẽ có dạng giống như một ngọn đồi với hai đỉnh cao và một thung lũng ở giữa
