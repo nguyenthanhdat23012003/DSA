@@ -290,23 +290,70 @@ Tìm kiếm trong các hệ thống cơ sở dữ liệu lớn, tối ưu hiệu
 ### 5. Thuật toán tìm kiếm lũy thừa (Exponential Search)
 
 **Giới thiệu**:  
-Tìm kiếm lũy thừa là một phương pháp tìm kiếm cho các mảng lớn, bắt đầu từ vị trí đầu tiên và nhân đôi khoảng tìm kiếm cho đến khi tìm thấy giá trị mục tiêu hoặc vượt quá giá trị đó.
+Tìm kiếm lũy thừa (Exponential Search) là một thuật toán tìm kiếm hiệu quả trên các mảng đã sắp xếp. Thuật toán này đặc biệt hữu ích khi làm việc với các mảng lớn, vì nó nhanh chóng mở rộng phạm vi tìm kiếm cho đến khi giá trị mục tiêu nằm trong một khoảng xác định, sau đó sử dụng tìm kiếm nhị phân trong khoảng này để tìm ra kết quả.
 
 **Cách triển khai**:  
-Thuật toán tìm kiếm một cách lũy thừa cho đến khi giá trị mục tiêu được tìm thấy hoặc vị trí hiện tại vượt quá kích thước mảng, sau đó sử dụng tìm kiếm nhị phân trong khoảng tìm kiếm đã xác định.
+1. **Nhảy theo cấp số nhân (Exponential Jump)**: Bắt đầu từ vị trí đầu tiên và tăng chỉ số tìm kiếm theo lũy thừa của 2 (0, 1, 2, 4, 8, …) cho đến khi tìm thấy giá trị lớn hơn hoặc bằng mục tiêu hoặc khi vượt qua kích thước của mảng.
+
+2. **Tìm kiếm nhị phân trong khoảng đã xác định**: Sau khi xác định khoảng từ bước nhảy mũ, thuật toán sẽ tiến hành tìm kiếm nhị phân trong khoảng đó để tìm vị trí chính xác của giá trị mục tiêu.
+
+**Ví dụ**:
+
+Giả sử  có một mảng đã sắp xếp như sau: ```[2, 3, 5, 7, 9, 14, 17, 23, 28, 35, 42, 47, 53, 59, 67, 72, 81, 89, 95]```
+
+Và muốn tìm giá trị 53.
+
+1. **Bước nhảy theo lũy thừa**: 
+- Bắt đầu từ vị trí `0 (2)`, tăng chỉ số theo lũy thừa của 2 cho đến khi giá trị hiện tại vượt quá giá trị cần tìm.
+- Các bước kiểm tra: `2, 3, 5, 9, 28, 81` (chỉ số `0, 1, 2, 4, 8, 16`).
+- Đến chỉ số 16, bạn có giá trị `81`, lớn hơn `53`, nên bạn dừng lại và biết rằng `53` nằm trong khoảng từ chỉ số `8` đến `16`.
+
+2. **Tìm kiếm nhị phân**: 
+- Thực hiện tìm kiếm nhị phân trong khoảng `[8, 16]`.
+- Xác định vị trí giữa là `12` với giá trị `53`, trùng với giá trị cần tìm.
+
+**Triển khai**:  
+
+```java
+public class Solution {
+    public int exponentialSearch(int[] nums, int target){
+    	int n = nums.length;
+    	if (n == 0) return -1;
+    	if(nums[0] == target) return 0;
+    	int step = 1;
+    	while(step < n && nums[step] <= target) {
+    	    step*=2;
+    	}
+    	
+    	int left = step / 2;
+        int right = Math.min(step, n - 1);
+        return binarySearch(nums, target, left, right);
+    }
+    
+    private int binarySearch(int[] nums, int target, int left, int right) {
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] == target) return mid;
+            if (nums[mid] < target) left = mid + 1;
+            else right = mid - 1;
+        }
+        return -1;
+    }
+}
+```
 
 **Độ phức tạp**:  
-- **Thời gian**: O(log n).
+- **Thời gian**: O(log i) cho phần nhảy theo lũy thừa, với i là chỉ số cuối cùng trước khi vượt quá giá trị mục tiêu, cộng với O(log i) cho tìm kiếm nhị phân. Tổng thời gian là O(log n).
 - **Không gian**: O(1).
 
 **Ứng dụng**:  
-Tìm kiếm trong các mảng lớn đã sắp xếp.
+Thường được sử dụng trong các hệ thống hoặc cơ sở dữ liệu lớn, đặc biệt khi cần hiệu quả cao trên các tập dữ liệu đã sắp xếp.
 
 **Ưu điểm**:  
-- Hiệu quả cho các mảng lớn.
+- Hiệu quả cho các mảng lớn, kết hợp nhảy nhanh và tìm kiếm nhị phân tối ưu.
 
 **Nhược điểm**:  
-- Không hiệu quả với mảng nhỏ.
+- Không phù hợp cho các mảng nhỏ, vì tìm kiếm nhị phân đơn giản có thể nhanh hơn.
 
 ---
 
