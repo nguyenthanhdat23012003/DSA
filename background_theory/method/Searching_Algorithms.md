@@ -360,20 +360,91 @@ Thường được sử dụng trong các hệ thống hoặc cơ sở dữ li�
 ### 6. Thuật toán tìm kiếm tam phân (Ternary Search)
 
 **Giới thiệu**:  
-Tìm kiếm tam phân chia mảng thành ba phần thay vì hai, giúp thu hẹp nhanh chóng không gian tìm kiếm.
+Thuật toán tìm kiếm tam phân (Ternary Search) là một phương pháp tìm kiếm trong mảng đã được sắp xếp. Tương tự như tìm kiếm nhị phân, thuật toán này cũng chia nhỏ không gian tìm kiếm để giảm số lượng phần tử cần kiểm tra. Tuy nhiên, thay vì chia không gian thành hai phần như tìm kiếm nhị phân, tìm kiếm tam phân chia không gian thành ba phần bằng cách xác định hai vị trí chia nhỏ trong mỗi bước lặp.
 
 **Cách triển khai**:  
-Tìm kiếm tam phân kiểm tra hai điểm chia trong mảng để xác định khoảng tìm kiếm cho giá trị mục tiêu và tiếp tục cho đến khi tìm thấy.
+Tìm kiếm tam phân kiểm tra hai điểm chia trong mảng để xác định khoảng tìm kiếm cho giá trị mục tiêu:
+1. Xác định hai chỉ số `mid1` và `mid2`, lần lượt là điểm một phần ba và hai phần ba của khoảng `[left, right]`.
+2. So sánh `target` với các giá trị tại `mid1` và `mid2`:
+   - Nếu `target` bằng giá trị tại `mid1`, trả về `mid1`.
+   - Nếu `target` bằng giá trị tại `mid2`, trả về `mid2`.
+   - Nếu `target` nhỏ hơn giá trị tại `mid1`, tìm trong khoảng `[left, mid1 - 1]`.
+   - Nếu `target` lớn hơn giá trị tại `mid2`, tìm trong khoảng `[mid2 + 1, right]`.
+   - Nếu `target` nằm giữa `mid1` và `mid2`, tìm trong khoảng `[mid1 + 1, mid2 - 1]`.
+3. Lặp lại quá trình cho đến khi tìm thấy `target` hoặc không còn phần tử nào để kiểm tra.
+
+**Ví dụ**:  
+Giả sử có mảng đã sắp xếp `nums = [2, 4, 7, 10, 15, 19, 23, 27, 31, 35]` và cần tìm giá trị `15`.
+
+- Bước 1: `left = 0`, `right = 9`. Tính `mid1 = 3`, `mid2 = 6`. Kiểm tra:
+  - `nums[mid1] = 10`, `nums[mid2] = 23`.
+  - `target = 15` nằm giữa `mid1` và `mid2`, nên chỉ tìm trong khoảng `[4, 5]`.
+- Bước 2: Cập nhật `left = 4`, `right = 5`. Tính `mid1 = 4`, `mid2 = 5`.
+  - `nums[mid1] = 15`, `target = 15`.
+- Kết quả: Trả về `mid1 = 4`, vì đã tìm thấy `target`.
+
+**Triển khai**:
+
+```java
+public class Solution {
+    // Triển khai đệ quy
+    public int ternarySearch(int[] nums, int target) {
+        return ternarySearchRecursive(nums, target, 0, nums.length - 1);
+    }
+    
+    private int ternarySearchRecursive(int[] nums, int target, int left, int right) {
+        if (left <= right) {
+            int mid1 = left + (right - left) / 3;
+            int mid2 = right - (right - left) / 3;
+
+            if (nums[mid1] == target) return mid1;
+            if (nums[mid2] == target) return mid2;
+
+            if (target < nums[mid1]) {
+                return ternarySearchRecursive(nums, target, left, mid1 - 1);
+            } else if (target > nums[mid2]) {
+                return ternarySearchRecursive(nums, target, mid2 + 1, right);
+            } else {
+                return ternarySearchRecursive(nums, target, mid1 + 1, mid2 - 1);
+            }
+        }
+        return -1;
+    }
+
+    // Triển khai lặp
+    public int ternarySearchIterative(int[] nums, int target) {
+        int left = 0, right = nums.length - 1;
+        
+        while (left <= right) {
+            int mid1 = left + (right - left) / 3;
+            int mid2 = right - (right - left) / 3;
+
+            if (nums[mid1] == target) return mid1;
+            if (nums[mid2] == target) return mid2;
+
+            if (target < nums[mid1]) {
+                right = mid1 - 1;
+            } else if (target > nums[mid2]) {
+                left = mid2 + 1;
+            } else {
+                left = mid1 + 1;
+                right = mid2 - 1;
+            }
+        }
+        return -1;
+    }
+}
+```
 
 **Độ phức tạp**:  
-- **Thời gian**: O(log3 n).
-- **Không gian**: O(1).
+- **Thời gian**: O(log₃ n) – nhanh hơn một chút so với tìm kiếm nhị phân với O(log₂ n) trong các trường hợp lý tưởng, vì số phần tử giảm theo log₃ mỗi lần lặp.
+- **Không gian**: O(1) trong triển khai lặp hoặc O(log₃ n) nếu triển khai đệ quy (do sử dụng thêm bộ nhớ ngăn xếp cho các lệnh gọi hàm).
 
 **Ứng dụng**:  
-Tìm kiếm trong các hàm đơn điệu để xác định giá trị cực đại hoặc cực tiểu.
+Tìm kiếm tam phân không phổ biến bằng tìm kiếm nhị phân, do các yêu cầu chặt chẽ về phân phối của mảng và độ phức tạp của việc chia thành ba phần, nhưng đôi khi có thể hiệu quả hơn trong các hệ thống đặc thù hoặc với dữ liệu có phân bố đồng đều.
 
 **Ưu điểm**:  
-- Có thể hiệu quả hơn trong một số tình huống so với tìm kiếm nhị phân.
+- Có thể nhanh hơn tìm kiếm nhị phân trong một số trường hợp nhất định khi xử lý mảng lớn và phân bố đều.
 
 **Nhược điểm**:  
-- Thực hiện phức tạp hơn và không phải lúc nào cũng nhanh hơn tìm kiếm nhị phân.
+- Không hiệu quả cho mảng nhỏ hoặc khi triển khai vì mất thêm chi phí chia thành ba phần, đồng thời ít phổ biến hơn so với tìm kiếm nhị phân.
