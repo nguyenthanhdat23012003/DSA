@@ -240,7 +240,37 @@ public class Solution {
 Tìm kiếm nhảy là một thuật toán hiệu quả cho các mảng đã được sắp xếp, cho phép nhảy qua các phần tử với các bước cố định.
 
 **Cách triển khai**:  
-Tìm kiếm nhảy xác định bước nhảy (thường là căn bậc hai của độ dài mảng) và kiểm tra phần tử ở các vị trí nhảy. Nếu phần tử mục tiêu nằm trong khoảng nhảy, thuật toán sử dụng tìm kiếm tuyến tính trong khoảng đó.
+Tìm kiếm nhảy xác định bước nhảy (thường là căn bậc hai của độ dài mảng) và kiểm tra phần tử ở các vị trí nhảy. Nếu phần tử mục tiêu nằm trong khoảng nhảy, thuật toán sử dụng tìm kiếm tuyến tính trong khoảng đó. Ví dụ, nếu mảng có 100 phần tử, bước nhảy sẽ là 10. Thuật toán kiểm tra phần tử ở các vị trí nhảy (0, 10, 20, ...) cho đến khi tìm thấy một phần tử lớn hơn hoặc bằng phần tử mục tiêu. Sau đó, nó sẽ sử dụng tìm kiếm tuyến tính trong khoảng giữa vị trí nhảy gần nhất và vị trí trước đó để tìm kiếm phần tử mục tiêu.
+
+**Ví dụ minh họa**:
+
+Giả sử chúng ta có mảng đã sắp xếp sau:
+```arr = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]```
+Và chúng ta muốn tìm phần tử mục tiêu là ```11```. Bước nhảy sẽ được tính là ```√n = √10 ≈ 3```. Thuật toán sẽ kiểm tra các chỉ số 0, 3, 6 và thấy rằng ```arr[6] = 13```, lớn hơn ```11```, nên thuật toán sẽ thực hiện tìm kiếm tuyến tính từ chỉ số 3 đến 6. Sau đó, nó tìm thấy ```11``` tại vị trí 5.
+
+**Triển khai**:  
+
+```java
+public class Solution {
+    public int jumpSearch(int[] nums, int target){
+    	int n = nums.length;
+    	int step = Math.sqrt(n);
+    	int nearlyIdx = 0;
+    	
+    	while(nearlyIdx < n && target >= nums[nearlyIdx]){
+    	    nearlyIdx += step;
+    	}
+    	
+    	int startIdx = Math.max(0, nearlyIdx - step);
+    	int endIdx = Math.min(nearlyIdx, n);
+        for (int i = startIdx; i < endIdx; i++) {
+            if (nums[i] == target) return i;
+        }
+    	
+    	return -1;
+    }
+}
+```
 
 **Độ phức tạp**:  
 - **Thời gian**: O(√n).
