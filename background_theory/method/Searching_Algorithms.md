@@ -136,23 +136,101 @@ Tìm kiếm trong cơ sở dữ liệu, tìm kiếm trong các mảng đã sắp
 ### 3. Thuật toán tìm kiếm nội suy (Interpolation Search)
 
 **Giới thiệu**:  
-Tìm kiếm nội suy là một phiên bản nâng cao của tìm kiếm nhị phân, phù hợp cho các mảng đã sắp xếp với các giá trị phân bố đều.
+Tìm kiếm nội suy là một phiên bản nâng cao của tìm kiếm nhị phân, phù hợp cho các mảng đã sắp xếp với các giá trị phân bố đều. Thay vì luôn lấy phần tử ở giữa, thuật toán tìm kiếm nội suy xác định vị trí ước tính dựa trên giá trị của mục tiêu so với các giá trị ở biên của mảng.
 
 **Cách triển khai**:  
-Thay vì chỉ lấy phần tử ở giữa, thuật toán tính toán vị trí dựa trên giá trị của mục tiêu, so sánh với các giá trị nhỏ nhất và lớn nhất trong mảng để xác định vị trí tìm kiếm.
+Thuật toán sử dụng công thức nội suy để tính vị trí ước tính `mid` của phần tử mục tiêu `target` như sau:
+
+$$
+\text{mid} = \text{left} + \frac{(\text{target} - \text{arr[left]}) \times (\text{right} - \text{left})}{\text{arr[right]} - \text{arr[left]}}
+$$
+
+
+1. **Giải thích công thức**:
+   - `target - arr[left]` tính khoảng cách của `target` so với phần tử ở biên trái `left`.
+   - `(right - left) / (arr[right] - arr[left])` đại diện cho tỷ lệ giữa độ dài của chỉ số mảng và giá trị phần tử ở biên.
+   - Nhân với khoảng cách này và cộng `left` sẽ cho vị trí `mid` ước tính gần nhất với `target`.
+
+2. **Phiên bản biến tấu tính `mid` theo `right`**:  
+   Công thức trên thường tính toán từ `left`, nhưng cũng có thể tính `mid` dựa trên `right` như sau:
+
+$$
+\text{mid} = \text{right} - \frac{(\text{arr[right]} - \text{target}) \times (\text{right} - \text{left})}{\text{arr[right]} - \text{arr[left]}}
+$$
+
+   - Công thức này sử dụng khoảng cách từ `target` đến `right` để ước lượng `mid` và thu hẹp khoảng tìm kiếm từ biên phải.
+
+**Ví dụ minh họa**:  
+Giả sử chúng ta có mảng `arr = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]` và muốn tìm `target = 70`.
+
+1. **Tính toán bước đầu tiên**:
+- `left = 0`, `right = 9`, `arr[left] = 10`, và `arr[right] = 100`.
+- Thay vào công thức:
+
+$$
+\text{mid} = 0 + \frac{(70 - 10) \times (9 - 0)}{100 - 10} = 0 + \frac{60 \times 9}{90} = 0 + 6 = 6
+$$
+- Chỉ số `mid = 6`, và `arr[6] = 70`, trùng với `target`. Thuật toán trả về `mid = 6` là vị trí của `target`.
+
+2. **Giải thích**:  
+- Vì các giá trị trong mảng được phân bố đều, công thức ước tính đã đưa ra `mid = 6` một cách chính xác, giúp tiết kiệm số lần lặp và truy vấn so với tìm kiếm nhị phân, vốn sẽ kiểm tra lần lượt từ `4` rồi `6`.
+
+**Triển khai**:
+
+```java
+
+public class Solution {
+    // Phương thức tìm kiếm nội suy sử dụng vòng lặp
+    public int interpolationSearchIterative(int[] nums, int target) {
+        int n = nums.length;
+        int left = 0;
+        int right = n - 1;
+        
+        while (left <= right && target >= nums[left] && target <= nums[right]) {
+            // Tính toán chỉ số giữa
+            int mid = left + (right - left) * (target - nums[left]) / (nums[right] - nums[left]);
+            if (nums[mid] == target) return mid;
+            if (nums[mid] < target) left = mid + 1;
+            else right = mid - 1; 
+        }
+        
+        return -1; 
+    }
+    
+    // Phương thức tìm kiếm nội suy sử dụng đệ quy
+    public int interpolationSearch(int[] nums, int target) {
+        int n = nums.length;
+        return interpolationSearchRecursive(nums, target, 0, n - 1);
+    }
+    
+    public int interpolationSearchRecursive(int[] nums, int target, int left, int right) {
+        if (left <= right && target >= nums[left] && target <= nums[right]) {
+            // Tính toán chỉ số giữa
+            int mid = left + (right - left) * (target - nums[left]) / (nums[right] - nums[left]);
+            if (nums[mid] == target) return mid;
+            if (nums[mid] < target) return interpolationSearchRecursive(nums, target, mid + 1, right);
+            else return interpolationSearchRecursive(nums, target, left, mid - 1);
+        }
+        
+        return -1; 
+    }
+}
+
+```
 
 **Độ phức tạp**:  
-- **Thời gian**: O(log log n) trong trường hợp tốt nhất, O(n) trong trường hợp xấu nhất.
-- **Không gian**: O(1).
+- **Thời gian**: O(log log n) trong trường hợp tốt nhất với các mảng có phân bố đồng đều, O(n) trong trường hợp xấu nhất.
+- **Không gian**: O(1), vì không yêu cầu bộ nhớ bổ sung ngoài các biến chỉ số.
 
 **Ứng dụng**:  
-Tìm kiếm trong các cơ sở dữ liệu lớn, trong các bảng biểu tượng.
+- Thích hợp cho tìm kiếm trong các cơ sở dữ liệu lớn với các trường có phân bố giá trị đồng đều, hoặc trong các bảng biểu tượng (symbol tables).
 
 **Ưu điểm**:  
-- Nhanh hơn trong các mảng có phân bố đồng đều.
+- Nhanh hơn tìm kiếm nhị phân khi các giá trị phân bố đều, vì nó ước lượng chính xác vị trí của `target`.
 
 **Nhược điểm**:  
-- Không hiệu quả nếu các giá trị không phân bố đồng đều.
+- Hiệu quả giảm nếu giá trị trong mảng không phân bố đồng đều, làm cho tính toán vị trí `mid` kém chính xác.
+
 
 ---
 
