@@ -12,3 +12,5 @@
 - Hàm monotonic (hay hàm đơn điệu) là một hàm mà giá trị của nó luôn tăng hoặc luôn giảm trong suốt miền xác định của hàm đó. Một cách cụ thể:
     - **Hàm đơn điệu tăng**: là hàm mà khi đầu vào tăng, đầu ra cũng tăng hoặc giữ nguyên. Với mọi $ x_1 < x_2 , f(x_1) \leq f(x_2) $
     - **Hàm đơn điệu giảm**: là hàm mà khi đầu vào tăng, đầu ra sẽ giảm hoặc giữ nguyên. Với mọi $ x_1 > x_2 , f(x_1) \leq f(x_2) $
+
+- Nhờ tính chất này, các hàm đơn điệu thường được dùng trong các thuật toán tìm kiếm và tối ưu hóa để giảm độ phức tạp tính toán, chẳng hạn như khi tìm kiếm nhị phân trong một mảng đơn điệu.
