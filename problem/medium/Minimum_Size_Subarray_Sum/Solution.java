@@ -1,5 +1,7 @@
 package problem.medium.Minimum_Size_Subarray_Sum;
 
+import java.util.Arrays;
+
 class Solution {
     public int minSubArrayLen(int target, int[] nums) {
         // // Solution 1: Prefix sum + Brute Force
@@ -27,35 +29,66 @@ class Solution {
 
         // return 0;
 
-        // Solution 2: Dynamic-size Sliding Window
-        // Time complexity: O(n)
-        // Space Complexity: O(1)
-        int n = nums.length;
-        int sum = 0;
+        // // Solution 2: Dynamic-size Sliding Window
+        // // Time complexity: O(n)
+        // // Space Complexity: O(1)
+        // int n = nums.length;
+        // int sum = 0;
 
-        for(int i = 0; i < n; i++){
-            sum+=nums[i];
-            if(nums[i] >= target) return 1;
+        // for(int i = 0; i < n; i++){
+        //     sum+=nums[i];
+        //     if(nums[i] >= target) return 1;
+        // }
+
+        // if(sum < target) return 0;
+        // if(sum == target) return n;
+
+        // int left = 0;
+        // int right = 0;
+        // int step = n;
+        // int subSum = nums[0];
+        // while(right < n){
+        //     if(subSum >= target) {
+        //         step = Math.min(step, right - left + 1);
+        //         subSum = subSum - nums[left];
+        //         left++;
+        //     } else {
+        //         right++;
+        //         if(right < n) subSum+=nums[right];
+        //     }
+        // }
+
+        // return step;
+
+        // Solution 3: Prefix sum + Binary Serach
+        // Time Complexity: O(nlog(n))
+        // Space Complexity: O(n)
+        int n = nums.length;
+        int[] prefix = new int[n + 1];
+        prefix[0] = 0;
+        
+        for(int i = 1; i < n + 1; i++){
+            prefix[i] = prefix[i - 1] + nums[i - 1];
+            if(nums[i - 1] >= target) return 1;
         }
 
-        if(sum < target) return 0;
-        if(sum == target) return n;
+        if(prefix[n] < target) return 0;
 
-        int left = 0;
-        int right = 0;
-        int step = n;
-        int subSum = nums[0];
-        while(right < n){
-            if(subSum >= target) {
-                step = Math.min(step, right - left + 1);
-                subSum = subSum - nums[left];
-                left++;
-            } else {
-                right++;
-                if(right < n) subSum+=nums[right];
+        int minLength = Integer.MAX_VALUE;
+
+        for (int i = 0; i < n; i++) {
+            int targetSum = prefix[i] + target;
+            int j = Arrays.binarySearch(prefix, targetSum);
+
+            if (j < 0) {
+                j = -j - 1;
+            }
+
+            if (j <= n) {
+                minLength = Math.min(minLength, j - i);
             }
         }
 
-        return step;
+        return minLength == Integer.MAX_VALUE ? 0 : minLength;
     }
 }
