@@ -448,3 +448,84 @@ Tìm kiếm tam phân không phổ biến bằng tìm kiếm nhị phân, do cá
 
 **Nhược điểm**:  
 - Không hiệu quả cho mảng nhỏ hoặc khi triển khai vì mất thêm chi phí chia thành ba phần, đồng thời ít phổ biến hơn so với tìm kiếm nhị phân.
+
+## So sánh Binary Search và Ternary Search
+- Nhiều thắc mắc được đưa ra rằng tại sao Tenary Search với độ phức tạp là $O(log_3 (n))$ lại không được ưa chuộng so với Binary Search với độ phức tạp lớn hơn là $O(log_2 (n))$ , hãy cùng xem xét độ phức tạp thực tế của chúng
+### Độ phức tạp thuật toán của Binary Search
+```java
+    public int binarySearchIterative(int[] nums, int target){
+        int n = nums.length;
+        int left = 0; 
+        int right = n - 1;
+        while(left <= right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] == target) return mid;
+            else if (nums[mid] > target) left = mid - 1;
+            else right = mid + 1;
+        }
+
+        return -1;
+    }
+```
+- Ở mỗi bước, binary search tiến hành chia đôi mảng, giả sử độ dài mảng là n, thì trong trường hợp xấu nhất (phần tử ở đầu hoặc cuối mảng) thì số lần chia đôi mảng sẽ là k thỏa mãn 
+    $$
+    \dfrac{n}{2^k} = 1
+    $$
+- Giải phương trình trên ta có 
+    $$
+    2^k = n \rightarrow k = log_2 (n)
+    $$
+- Như vậy, số lần lặp để chia đôi mảng sẽ là $log_2 (n)$ tương đương với độ phức tạp thuật toán sẽ là $O(log_2 (n))$
+- Tuy nhiên, hãy để ý vào mỗi lần lặp, Binary Search sẽ cần thực hiện một phép tính (tính **mid**) và hai phép so sánh (so sánh bằng và so sánh lớn hơn hoặc nhỏ hơn), như vậy, **số toán tử thực tế** mà Binary Search sẽ cần tính toán sẽ được tính bằng công thức sau đây:
+    $$
+    T_b (n) = 3 \times log_2 (n)
+    $$
+    
+### Độ phức tạp thuật toán của Ternary Search
+```java
+    public int ternarySearchIterative(int[] nums, int target) {
+        int left = 0, right = nums.length - 1;
+        
+        while (left <= right) {
+            int mid1 = left + (right - left) / 3;
+            int mid2 = right - (right - left) / 3;
+
+            if (nums[mid1] == target) return mid1;
+            if (nums[mid2] == target) return mid2;
+
+            if (target < nums[mid1]) {
+                right = mid1 - 1;
+            } else if (target > nums[mid2]) {
+                left = mid2 + 1;
+            } else {
+                left = mid1 + 1;
+                right = mid2 - 1;
+            }
+        }
+        return -1;
+    }
+```
+- Ở mỗi bước, ternary search tiến hành chia mảng thành ba phần, giả sử độ dài mảng là n, thì trong trường hợp xấu nhất (phần tử ở đầu hoặc cuối mảng) thì số lần chia mảng thành ba phần sẽ là k thỏa mãn 
+    $$
+    \dfrac{n}{3^k} = 1
+    $$
+- Giải phương trình trên ta có 
+    $$
+    3^k = n \rightarrow k = log_3 (n)
+    $$
+- Như vậy, số lần lặp để chia mảng thành ba phần sẽ là $log_3 (n)$ tương đương với độ phức tạp thuật toán sẽ là $O(log_3 (n))$
+- Tuy nhiên, cũng như Binary Seach, Ternary Search sẽ cần thực hiện nhiều hơn một toán tử, ở đây cụ thể là 2 phép tính (tính  **mid1** và **mid2**) và 4 phép so sánh (so sánh bằng và so sánh lớn hơn hoặc nhỏ hơn với từng **mid1** và **nid2**), như vậy, **số toán tử thực tế** mà Binary Search sẽ cần tính toán sẽ được tính bằng công thức sau đây:
+    $$
+    T_t (n) = 6 \times log_3 (n)
+    $$
+
+### So sánh và kết luận
+- So sánh số toán tử thực tế mà Binary Search và Ternary Search cần để hoàn thành thuật toán trong trường hợp xấu nhất, ta thấy như sau 
+$$
+\dfrac{T_t (n)}{T_b (n)} = \dfrac{6 \times log_3 (n)}{3 \times log_2 (n)} = \dfrac{2 \times log_3 (n)}{log_2 (n)} 
+$$
+$$
+= \dfrac{2 \times log_3 (n)}{log_2 (3) \times log_3 (n)} = \dfrac{2}{log_2 (3)} \approx 1.26 > 1
+$$
+
+- Như vậy có thể kết luận rằng Ternary Search sẽ thực hiện nhiều toán tử hơn so với Binary mặc dù có độ phức tạp thuật toán nhỏ hơn, vì vậy trong thực tế, thời gian thực thi Binary Search sẽ tốt hơn so với Ternary Search và Binary Search sẽ được sử dụng nhiều hơn
