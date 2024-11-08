@@ -15,6 +15,7 @@ Giả sử bạn có mảng `arr = [2, 1, 5, 1, 3, 2]` và `k = 3`. Bài toán y
 
 #### Code Java cho Fixed-size Window
 
+```java
 public class SlidingWindow {
 
     // Phương thức tìm tổng lớn nhất của dãy con có độ dài k
@@ -38,7 +39,7 @@ public class SlidingWindow {
         System.out.println("Max sum of fixed window: " + maxSumFixedWindow(arr, k));  // Output: 9
     }
 }
-
+```
 ### 2. Dynamic-size Window (Cửa sổ động)
 Cửa sổ có kích thước thay đổi, dùng khi cần tìm dãy con thỏa mãn điều kiện nào đó. Ví dụ: Tìm chuỗi con dài nhất chứa tối đa 2 ký tự khác nhau trong chuỗi `s = "abcba"`.
 
@@ -49,7 +50,7 @@ Cửa sổ có kích thước thay đổi, dùng khi cần tìm dãy con thỏa 
 4. Cập nhật độ dài chuỗi con dài nhất mỗi khi cửa sổ thoả mãn điều kiện.
 
 #### Code Java cho Dynamic-size Window
-
+```java
 import java.util.HashMap;
 import java.util.Map;
 
@@ -84,7 +85,7 @@ public class SlidingWindow {
         System.out.println("Longest substring with two distinct chars: " + longestSubstrWithTwoDistinctChars(s));  // Output: 3 ("bcb")
     }
 }
-
+```
 ## Tóm tắt
 | Loại cửa sổ         | Ứng dụng                               | Khi nào nên sử dụng                  |
 |---------------------|----------------------------------------|--------------------------------------|
