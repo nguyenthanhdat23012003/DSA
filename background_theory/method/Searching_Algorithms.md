@@ -469,7 +469,7 @@ Tìm kiếm tam phân không phổ biến bằng tìm kiếm nhị phân, do cá
 ```
 - Ở mỗi bước, binary search tiến hành chia đôi mảng, giả sử độ dài mảng là n, thì trong trường hợp xấu nhất (phần tử ở đầu hoặc cuối mảng) thì số lần chia đôi mảng sẽ là k thỏa mãn 
     $$
-    \dfrac{n}{2^k} = 1
+    \frac{n}{2^k} = 1
     $$
 - Giải phương trình trên ta có 
     $$
@@ -507,7 +507,7 @@ Tìm kiếm tam phân không phổ biến bằng tìm kiếm nhị phân, do cá
 ```
 - Ở mỗi bước, ternary search tiến hành chia mảng thành ba phần, giả sử độ dài mảng là n, thì trong trường hợp xấu nhất (phần tử ở đầu hoặc cuối mảng) thì số lần chia mảng thành ba phần sẽ là k thỏa mãn 
     $$
-    \dfrac{n}{3^k} = 1
+    \frac{n}{3^k} = 1
     $$
 - Giải phương trình trên ta có 
     $$
@@ -522,10 +522,10 @@ Tìm kiếm tam phân không phổ biến bằng tìm kiếm nhị phân, do cá
 ### So sánh và kết luận
 - So sánh số toán tử thực tế mà Binary Search và Ternary Search cần để hoàn thành thuật toán trong trường hợp xấu nhất, ta thấy như sau 
 $$
-\dfrac{T_t (n)}{T_b (n)} = \dfrac{6 \times log_3 (n)}{3 \times log_2 (n)} = \dfrac{2 \times log_3 (n)}{log_2 (n)} 
+\frac{T_t (n)}{T_b (n)} = \frac{6 \times log_3 (n)}{3 \times log_2 (n)} = \frac{2 \times log_3 (n)}{log_2 (n)} 
 $$
 $$
-= \dfrac{2 \times log_3 (n)}{log_2 (3) \times log_3 (n)} = \dfrac{2}{log_2 (3)} \approx 1.26 > 1
+= \frac{2 \times log_3 (n)}{log_2 (3) \times log_3 (n)} = \frac{2}{log_2 (3)} \approx 1.26 > 1
 $$
 
 - Như vậy có thể kết luận rằng Ternary Search sẽ thực hiện nhiều toán tử hơn so với Binary mặc dù có độ phức tạp thuật toán nhỏ hơn, vì vậy trong thực tế, thời gian thực thi Binary Search sẽ tốt hơn so với Ternary Search và Binary Search sẽ được sử dụng nhiều hơn
