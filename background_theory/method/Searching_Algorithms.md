@@ -468,15 +468,20 @@ Tìm kiếm tam phân không phổ biến bằng tìm kiếm nhị phân, do cá
     }
 ```
 - Ở mỗi bước, binary search tiến hành chia đôi mảng, giả sử độ dài mảng là n, thì trong trường hợp xấu nhất (phần tử ở đầu hoặc cuối mảng) thì số lần chia đôi mảng sẽ là k thỏa mãn 
+
 $$
 \dfrac{n}{2^k} = 1
 $$
+
 - Giải phương trình trên ta có 
+
 $$
 2^k = n \rightarrow k = log_2 (n)
 $$
+
 - Như vậy, số lần lặp để chia đôi mảng sẽ là $log_2 (n)$ tương đương với độ phức tạp thuật toán sẽ là $O(log_2 (n))$
 - Tuy nhiên, hãy để ý vào mỗi lần lặp, Binary Search sẽ cần thực hiện một phép tính (tính **mid**) và hai phép so sánh (so sánh bằng và so sánh lớn hơn hoặc nhỏ hơn), như vậy, **số toán tử thực tế** mà Binary Search sẽ cần tính toán sẽ được tính bằng công thức sau đây:
+
 $$
 T_b (n) = 3 \times log_2 (n)
 $$
@@ -506,22 +511,27 @@ $$
     }
 ```
 - Ở mỗi bước, ternary search tiến hành chia mảng thành ba phần, giả sử độ dài mảng là n, thì trong trường hợp xấu nhất (phần tử ở đầu hoặc cuối mảng) thì số lần chia mảng thành ba phần sẽ là k thỏa mãn 
+
 $$
 \dfrac{n}{3^k} = 1
 $$
+
 - Giải phương trình trên ta có 
+
 $$
 3^k = n \rightarrow k = log_3 (n)
 $$
+
 - Như vậy, số lần lặp để chia mảng thành ba phần sẽ là $log_3 (n)$ tương đương với độ phức tạp thuật toán sẽ là $O(log_3 (n))$
 - Tuy nhiên, cũng như Binary Seach, Ternary Search sẽ cần thực hiện nhiều hơn một toán tử, ở đây cụ thể là 2 phép tính (tính  **mid1** và **mid2**) và 4 phép so sánh (so sánh bằng và so sánh lớn hơn hoặc nhỏ hơn với từng **mid1** và **nid2**), như vậy, **số toán tử thực tế** mà Binary Search sẽ cần tính toán sẽ được tính bằng công thức sau đây:
+
 $$
 T_t (n) = 6 \times log_3 (n)
 $$
 
 ### So sánh và kết luận
 - So sánh số toán tử thực tế mà Binary Search và Ternary Search cần để hoàn thành thuật toán trong trường hợp xấu nhất, ta thấy như sau: 
- 
+
 $$
 \dfrac{T_t (n)}{T_b (n)} = \dfrac{6 \times log_3 (n)}{3 \times log_2 (n)} = \dfrac{2 \times log_3 (n)}{log_2 (n)} 
 $$
