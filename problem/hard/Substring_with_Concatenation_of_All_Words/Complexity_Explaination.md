@@ -1,4 +1,4 @@
-# Phân Tích Độ Phức Tạp cho Bài Toán `Substring với Concatenation của Tất Cả Words`
+# Phân Tích Độ Phức Tạp cho Bài Toán `Substring with Concatenation of All Words`
 
 ## Mô Tả Bài Toán
 
