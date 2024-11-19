@@ -1,19 +1,21 @@
 package problem.medium.Valid_Sudoku;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 class Solution {
     public boolean isValidSudoku(char[][] board) {
         // Arrays of hash sets to track digits in rows, columns, and sub-boxes
-        HashSet<Character>[] rowSets = new HashSet[9];
-        HashSet<Character>[] colSets = new HashSet[9];
-        HashSet<Character>[] boxSets = new HashSet[9];
+        List<HashSet<Character>> rowSets = new ArrayList<>();
+        List<HashSet<Character>> colSets = new ArrayList<>();
+        List<HashSet<Character>> boxSets = new ArrayList<>();
 
         // Initialize each set
         for (int i = 0; i < 9; i++) {
-            rowSets[i] = new HashSet<>();
-            colSets[i] = new HashSet<>();
-            boxSets[i] = new HashSet<>();
+            rowSets.add(new HashSet<>());
+            colSets.add(new HashSet<>());
+            boxSets.add(new HashSet<>());
         }
 
         // Iterate over the board
@@ -28,16 +30,16 @@ class Solution {
                 int boxIndex = (row / 3) * 3 + (col / 3);
 
                 // Check for duplicates in row, column, and box
-                if (rowSets[row].contains(value) ||
-                    colSets[col].contains(value) ||
-                    boxSets[boxIndex].contains(value)) {
+                if (rowSets.get(row).contains(value) ||
+                    colSets.get(col).contains(value) ||
+                    boxSets.get(boxIndex).contains(value)) {
                     return false;
                 }
 
                 // Add value to the respective sets
-                rowSets[row].add(value);
-                colSets[col].add(value);
-                boxSets[boxIndex].add(value);
+                rowSets.get(row).add(value);
+                colSets.get(col).add(value);
+                boxSets.get(boxIndex).add(value);
             }
         }
 
