@@ -21,7 +21,7 @@ class Solution {
 
             if(stored.containsKey(c)){
                 current.put(c, current.getOrDefault(c, 0) + 1);
-                if(current.get(c) == stored.get(c)) count++;
+                if(current.get(c).intValue() == stored.get(c).intValue()) count++;
             }
 
             while(count == stored.size()){
@@ -34,7 +34,7 @@ class Solution {
 
                 if(stored.containsKey(firstChar)) {
                     current.put(firstChar, current.get(firstChar) - 1);
-                    if(current.get(firstChar) < stored.get(firstChar)) count--;
+                    if(current.get(firstChar).intValue() < stored.get(firstChar).intValue()) count--;
                 }
 
                 firstIdx++;
