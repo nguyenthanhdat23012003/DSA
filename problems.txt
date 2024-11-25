@@ -39,3 +39,4 @@ Set Matrix Zeroes
 Game of Life
 Ransom Note
 Isomorphic Strings
+Word Pattern
