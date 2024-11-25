@@ -50,3 +50,8 @@
     - Các giá trị của hàm tăng lên đến điểm cực trị đầu tiên, giảm xuống, và sau đó lại tăng lên đến điểm cực trị thứ hai. (hoặc ngược lại)
 
 - **Hình ảnh minh họa**: Một đồ thị của một hàm bimodal sẽ có dạng giống như một ngọn đồi với hai đỉnh cao và một thung lũng ở giữa
+
+#### Anagram
+
+- **Định nghĩa**: Phép đảo chữ (tiếng Anh: Anagram, hay còn gọi là thuật đảo chữ) là cách một từ hay cụm từ được tái sắp xếp thành các ký tự của 1 từ hay cụm từ khác, sử dụng các ký tự ban đầu chỉ 1 lần duy nhất.
+- **Ví dụ**: Từ "rail safety" có thể viết thành "fairy tales" với cùng số lượng từng chữ cái.
