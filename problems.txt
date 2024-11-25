@@ -40,3 +40,4 @@ Game of Life
 Ransom Note
 Isomorphic Strings
 Word Pattern
+Valid Anagram
