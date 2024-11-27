@@ -55,3 +55,19 @@
 
 - **Định nghĩa**: Phép đảo chữ (tiếng Anh: Anagram, hay còn gọi là thuật đảo chữ) là cách một từ hay cụm từ được tái sắp xếp thành các ký tự của 1 từ hay cụm từ khác, sử dụng các ký tự ban đầu chỉ 1 lần duy nhất.
 - **Ví dụ**: Từ "rail safety" có thể viết thành "fairy tales" với cùng số lượng từng chữ cái.
+
+#### Happy Number
+
+- **Định nghĩa**: Trong toán học, Happy Number (Số Hạnh Phúc) là một số nguyên dương được xác định dựa trên một quá trình lặp lại. Quá trình này gồm:
+
+1. Lấy các chữ số của số đó, bình phương từng chữ số, rồi cộng lại để tạo ra một số mới.
+2. Lặp lại quá trình này với số mới.
+3. Nếu quá trình dẫn đến số 1, thì số ban đầu được gọi là Happy Number.
+4. Nếu quá trình rơi vào một vòng lặp vô tận mà không bao giờ đạt đến 1, thì số đó được gọi là Unhappy Number.
+
+- **Ví dụ**: Kiểm tra số 19 có phải là Happy Number không:
+    - Bước 1: 1^2 + 9^2 = 82
+    - Bước 2: 8^2 + 2^2 = 68
+    - Bước 3: 6^2 + 8^2 = 100
+    - Bước 4: 1^2 + 0^2 + 0^2 = 1
+    - Vì quá trình kết thúc với số 1, nên 19 là một Happy Number.
