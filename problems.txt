@@ -48,3 +48,4 @@ Contains Duplicate II
 Longest Consecutive Sequence
 Summary Ranges
 Merge Intervals
+Insert Interval
