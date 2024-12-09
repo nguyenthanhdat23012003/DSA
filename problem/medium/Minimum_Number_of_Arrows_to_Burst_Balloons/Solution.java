@@ -20,7 +20,7 @@ class Solution {
     //     return result;
     // }
 
-    // Solution 2: Interval Sweeping
+    // Solution 2: Interval Sweeping (Same Greedy)
     // Time Complexity: O(n * log(n))
     // Space Complexity: O(1)
     public int findMinArrowShots(int[][] points) {
