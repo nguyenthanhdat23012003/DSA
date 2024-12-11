@@ -47,6 +47,8 @@ Trong đoạn mã trên:
 - Các phần tử được thêm vào và truy cập thông qua các phương thức có sẵn.
 - Một vòng lặp `for-each` có thể được sử dụng để duyệt qua các phần tử trong Stack, nhưng lưu ý rằng các phần tử sẽ được duyệt theo thứ tự từ phần tử dưới cùng đến phần tử trên cùng.
 
+**Note**: Phần trên là triển khai dựa trên thư viện được cung cấp sẵn của Java, có thể tham khảo cách tự triển khai chi tiết tại **data_structure_implement/Stack**
+
 ## Ứng dụng
 
 Stack có nhiều ứng dụng trong lập trình, bao gồm:
