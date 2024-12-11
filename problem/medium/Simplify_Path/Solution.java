@@ -1,5 +1,7 @@
 package problem.medium.Simplify_Path;
 
+import java.util.Stack;
+
 class Solution {
     public String simplifyPath(String path) {
         Stack<String> stored = new Stack<>();
