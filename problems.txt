@@ -54,3 +54,4 @@ Valid Parentheses
 Simplify Path
 Min Stack
 Evaluate Reverse Polish Notation
+Basic Calculator
