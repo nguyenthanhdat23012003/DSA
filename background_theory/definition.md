@@ -71,3 +71,13 @@
     - Bước 3: 6^2 + 8^2 = 100
     - Bước 4: 1^2 + 0^2 + 0^2 = 1
     - Vì quá trình kết thúc với số 1, nên 19 là một Happy Number.
+
+#### Reverse Polish Notation (Ký pháp nghịch đảo)
+
+- **Định nghĩa**: Ký pháp nghịch đảo, thường được gọi là kí pháp Ba Lan ngược (Reverse Polish Notation - RPN), là một cách biểu diễn biểu thức toán học mà toán tử (như +, -, *, /) được đặt sau toán hạng (các số hoặc biến).
+
+- **Ví dụ**: 
+    - Biểu thức toán học thông thường (Infix notation): A + B
+    - Trong ký pháp nghịch đảo sẽ là: A B +
+
+- Đại khai là sẽ dùng kí pháp này để lập trình cho các máy tính cầm tay, sắp xếp lại thứ tự của một phép tính để dễ dàng xử lý bằng lập trình hơn do không cần phải quan tâm đến độ ưu tiên toán tử hay dấu ngoặc, chi tiết hơn xem tại [Reverse Polish Notation](https://mathworld.wolfram.com/ReversePolishNotation.html)
