@@ -51,6 +51,8 @@ Trong đoạn mã trên:
 - Các phần tử được thêm vào, truy cập và thay đổi thông qua các phương thức có sẵn.
 - Một vòng lặp `for-each` được sử dụng để duyệt qua các phần tử trong LinkedList và in ra giá trị của chúng.
 
+**Note**: Phần trên là triển khai dựa trên thư viện được cung cấp sẵn của Java, có thể tham khảo cách tự triển khai chi tiết tại **data_structure_implement/LinkedList**
+
 ## Ứng dụng
 
 LinkedList được sử dụng rộng rãi trong nhiều ứng dụng, bao gồm:
