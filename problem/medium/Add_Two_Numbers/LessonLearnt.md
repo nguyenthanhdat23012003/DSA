@@ -1,0 +1,3 @@
+**Lưu ý**: Bài này ý tưởng ban đầu của mình là duyệt hai danh sách liên kết để lấy ra hai số, rồi cộng vào và ném lại vào một danh sách rồi trả về. Ý tưởng nghe có vẻ đúng tuy nhiên khi submit lại chỉ pass được 1/3 tổng số test case. Nguyên nhân chính là do không đọc kĩ constraint dẫn đến lỗi tràn số, khi mà mỗi list cho phép lên tới 100 chữ số, trong khi mình khai báo int cho hai số khi lấy ra nên max chỉ là 2^31 (khoảng 10 chữ số), thậm chí nếu có khai báo long thì cũng chỉ đến được 2^63 (khoảng 19 chữ số), không đủ được để xử lý đến 100 chữ số, gây ra lỗi tràn bộ nhớ => phải sửa bằng solution khác là cộng từng chữ sỗ trong list rồi lưu lại số dư cho phép cộng chữ số sau
+
+- Kết luận: Luôn phải check kĩ constraint, nếu đề không cho thì phải tự nghĩ để hỏi người ra đề.
