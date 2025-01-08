@@ -64,3 +64,4 @@ Reverse Nodes in k-Group
 Remove Nth Node From End of List
 Remove Duplicates from Sorted List II
 Rotate List
+Partition List
