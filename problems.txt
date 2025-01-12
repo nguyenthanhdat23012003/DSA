@@ -68,3 +68,4 @@ Partition List
 LRU Cache
 Maximum Depth of Binary Tree
 Same Tree
+Invert Binary Tree
