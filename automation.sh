@@ -86,7 +86,17 @@ pushProblems() {
         for problem_folder in "$PROBLEM_DIR/$difficulty"/*; do
             if [ -d "$problem_folder" ]; then
                 problem_name=$(basename "$problem_folder" | sed 's/_/ /g')
-                if ! grep -Fxq "$problem_name" "$PROBLEMS_FILE"; then
+
+                # Check if the problem already exists in problems.txt
+                if grep -Fxq "$problem_name" "$PROBLEMS_FILE"; then
+                    # Check if the problem is at the last line of problems.txt
+                    if [ "$(tail -n 1 "$PROBLEMS_FILE")" == "$problem_name" ]; then
+                        git add "$problem_folder"
+                        git commit -m "Solution: $problem_name"
+                        echo "Updated solution for problem: $problem_name"
+                    fi
+                else
+                    # Handle new problems
                     git add "$problem_folder"
                     echo "$problem_name" >> "$PROBLEMS_FILE"  # Log the new problem
                     git add "$PROBLEMS_FILE"
