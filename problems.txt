@@ -70,3 +70,5 @@ Maximum Depth of Binary Tree
 Same Tree
 Invert Binary Tree
 Symmetric Tree
+Construct Binary Tree from Preorder and Inorder Traversal
+Construct Binary Tree from Inorder and Postorder Traversal
