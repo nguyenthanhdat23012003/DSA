@@ -7,16 +7,16 @@
  * prior written permission from the author.
  */
 
- package data_structure_implement.LinkedList;
+package data_structure_implement.LinkedList;
 
- /**
-  * LinkedList class represents a basic implementation of a singly linked list.
-  * It supports add, remove, get, isEmpty, and size operations.
-  * 
-  * @author Hodynguyen
-  * @version 1.0
-  * @since 2024
-  */
+/**
+ * LinkedList class represents a basic implementation of a singly linked list.
+ * It supports add, remove, get, isEmpty, and size operations.
+ * 
+ * @author Hodynguyen
+ * @version 1.0
+ * @since 2024
+ */
 class LinkedList<T> {
     private Node<T> head; // Head of the linked list
     private int size;     // Current size of the linked list
