@@ -40,5 +40,24 @@ public class Solution {
 
             prev = curr;
         }
+
+        // Solution 2: Predecessor
+        // Time Complexity: O(n)
+        // Space Complexity: O(1)
+        TreeNode curr = root;
+        while(curr != null) {
+            if(curr.left != null) {
+                TreeNode last = curr.left;
+                while(last.right != null) {
+                    last = last.right;
+                }
+
+                last.right = curr.right;
+                curr.right = curr.left;
+                curr.left = null;
+            }
+
+            curr = curr.right;
+        }
     }
 }
