@@ -1,4 +1,4 @@
-# Enable auto-completion for the automation.sh script
+# Enable auto-completion for the tool.sh script
 
 _automation_completion() {
     # Define the main commands for the script
@@ -20,5 +20,5 @@ _automation_completion() {
     fi
 }
 
-# Register _automation_completion function to complete ./automation.sh commands
-complete -F _automation_completion ./automation.sh
+# Register _automation_completion function to complete ./tool.sh commands
+complete -F _automation_completion ./tool.sh
